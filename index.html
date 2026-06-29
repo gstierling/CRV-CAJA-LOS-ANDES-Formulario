@@ -10,20 +10,22 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0d1117;
-    --surface: #161b22;
-    --border: #30363d;
-    --orange: #f97316;
-    --teal: #00d4aa;
-    --red: #ef4444;
-    --text: #e6edf3;
-    --muted: #8b949e;
+    --bg: #00b4d8;
+    --surface: #0096c7;
+    --border: rgba(255,255,255,0.25);
+    --orange: #f5a623;
+    --teal: #ffffff;
+    --red: #ff4d4d;
+    --text: #ffffff;
+    --muted: rgba(255,255,255,0.75);
     --radius: 14px;
+    --btn-confirm: #f5a623;
+    --btn-back: rgba(255,255,255,0.2);
   }
 
   body {
     font-family: 'Nunito', sans-serif;
-    background: var(--bg);
+    background: linear-gradient(160deg, #00c8e8 0%, #0096c7 100%);
     color: var(--text);
     min-height: 100vh;
     display: flex;
@@ -33,13 +35,14 @@
   }
 
   .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 24px;
     padding: 28px 20px;
     width: 100%;
     max-width: 500px;
     text-align: center;
+    backdrop-filter: blur(8px);
   }
 
   .logo-bar {
@@ -61,21 +64,21 @@
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: rgba(255,255,255,0.8);
   }
 
   h1 {
     font-size: 22px;
     font-weight: 900;
     line-height: 1.3;
-    color: var(--text);
+    color: #fff;
     margin-bottom: 28px;
   }
 
   .rut-label {
     font-size: 52px;
     font-weight: 900;
-    color: var(--orange);
+    color: #fff;
     letter-spacing: 0.04em;
     margin-bottom: 16px;
     margin-top: 8px;
@@ -84,10 +87,10 @@
   input[type="text"] {
     width: 100%;
     padding: 18px;
-    background: var(--bg);
-    border: 2px solid var(--border);
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.4);
     border-radius: var(--radius);
-    color: var(--text);
+    color: #fff;
     font-family: 'Nunito', sans-serif;
     font-size: 28px;
     font-weight: 700;
@@ -99,11 +102,12 @@
   }
 
   input[type="text"]:focus {
-    border-color: var(--orange);
+    border-color: #fff;
+    background: rgba(255,255,255,0.28);
   }
 
   input[type="text"]::placeholder {
-    color: var(--border);
+    color: rgba(255,255,255,0.4);
     font-weight: 400;
     font-size: 18px;
   }
@@ -125,11 +129,25 @@
 
   .btn:hover { opacity: 0.9; }
   .btn:active { transform: scale(0.98); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  .btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
+  .btn-back {
+    width: 100%;
+    padding: 16px;
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: var(--radius);
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    margin-top: 8px;
   }
+
+  .btn-back:hover { opacity: 0.85; }
+  .btn-back:active { transform: scale(0.98); }
 
   /* Resultado B1 - No pertenece */
   .result-no {
@@ -144,13 +162,17 @@
   .result-no .msg {
     font-size: 30px;
     font-weight: 900;
-    color: var(--red);
+    color: #fff;
     line-height: 1.2;
+    background: rgba(255,0,0,0.25);
+    border-radius: 14px;
+    padding: 16px;
+    width: 100%;
   }
 
   .result-no .sub {
     font-size: 16px;
-    color: var(--muted);
+    color: rgba(255,255,255,0.8);
   }
 
   /* Resultado B2 - Sí pertenece */
@@ -166,7 +188,7 @@
   .result-yes .msg-excelente {
     font-size: 42px;
     font-weight: 900;
-    color: var(--teal);
+    color: #fff;
     line-height: 1;
     letter-spacing: 0.04em;
   }
@@ -174,7 +196,7 @@
   .result-yes .msg-sub {
     font-size: 24px;
     font-weight: 800;
-    color: var(--teal);
+    color: #fff;
     line-height: 1.2;
     margin-top: -8px;
   }
@@ -182,7 +204,7 @@
   .services-label {
     font-size: 22px;
     font-weight: 900;
-    color: var(--text);
+    color: #fff;
     text-align: center;
     line-height: 1.3;
   }
@@ -190,7 +212,7 @@
   .services-hint {
     font-size: 15px;
     font-weight: 600;
-    color: var(--muted);
+    color: rgba(255,255,255,0.75);
     margin-top: 4px;
   }
 
@@ -206,19 +228,19 @@
     align-items: center;
     gap: 16px;
     padding: 18px 20px;
-    background: var(--bg);
-    border: 2px solid var(--border);
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.25);
     border-radius: var(--radius);
     cursor: pointer;
     transition: border-color 0.2s, background 0.2s;
     text-align: left;
   }
 
-  .service-item:hover { border-color: var(--teal); }
+  .service-item:hover { border-color: rgba(255,255,255,0.7); }
 
   .service-item.selected {
-    border-color: var(--teal);
-    background: rgba(0, 212, 170, 0.08);
+    border-color: #fff;
+    background: rgba(255,255,255,0.28);
   }
 
   .service-item input[type="checkbox"] { display: none; }
@@ -226,7 +248,7 @@
   .check-box {
     width: 28px;
     height: 28px;
-    border: 2px solid var(--border);
+    border: 2px solid rgba(255,255,255,0.4);
     border-radius: 7px;
     flex-shrink: 0;
     display: flex;
@@ -238,9 +260,9 @@
   }
 
   .service-item.selected .check-box {
-    background: var(--teal);
-    border-color: var(--teal);
-    color: #0d1117;
+    background: var(--orange);
+    border-color: var(--orange);
+    color: #fff;
   }
 
   .service-emoji { font-size: 28px; }
@@ -248,7 +270,7 @@
   .service-name {
     font-size: 18px;
     font-weight: 800;
-    color: var(--text);
+    color: #fff;
   }
 
   /* Paso final - Confirmación */
@@ -268,7 +290,7 @@
   .result-done .msg-listo {
     font-size: 56px;
     font-weight: 900;
-    color: var(--teal);
+    color: #fff;
     line-height: 1;
     letter-spacing: 0.04em;
   }
@@ -276,7 +298,7 @@
   .result-done .msg-sub {
     font-size: 22px;
     font-weight: 700;
-    color: var(--text);
+    color: #fff;
     line-height: 1.4;
   }
 
@@ -293,7 +315,7 @@
   .result-done.active { display: flex; }
 
   .error-msg {
-    color: var(--red);
+    color: #ffe066;
     font-size: 14px;
     font-weight: 700;
     margin-top: -14px;
@@ -303,7 +325,7 @@
 
   .sending {
     font-size: 14px;
-    color: var(--muted);
+    color: rgba(255,255,255,0.7);
     margin-top: 8px;
     display: none;
   }
@@ -336,7 +358,7 @@
     <div class="icon">😔</div>
     <div class="msg">Lo sentimos, no perteneces a CAJA LOS ANDES</div>
     <div class="sub">Tu RUT no corresponde a esta caja de compensación.</div>
-    <button class="btn" style="background:var(--border); font-size:20px; margin-top:8px;" onclick="reiniciar()">Volver a intentar</button>
+    <button class="btn-back" onclick="reiniciar()">← Volver a consulta de RUT</button>
   </div>
 
   <!-- RESULTADO B2: Sí pertenece -->
@@ -377,7 +399,8 @@
   <div class="result-done" id="result-done">
     <div class="icon">✅</div>
     <div class="msg-listo">¡LISTO!</div>
-    <div class="msg-sub">Acércate a una de las promotoras y solicita el o los servicios que hayas escogido.</div>
+    <div class="msg-sub">Acércate a una de las promotoras y solicita él o los servicios que hayas escogido.</div>
+    <button class="btn-back" onclick="reiniciar()">← Volver a consulta de RUT</button>
   </div>
 
 </div>
@@ -394,12 +417,12 @@
 
     if (!/^\d+$/.test(val)) {
       errorEl.style.display = "block";
-      input.style.borderColor = "var(--red)";
+      input.style.borderColor = "rgba(255,100,100,0.8)";
       return;
     }
 
     errorEl.style.display = "none";
-    input.style.borderColor = "var(--border)";
+    input.style.borderColor = "rgba(255,255,255,0.4)";
     rutIngresado = val;
 
     const ultimoDigito = parseInt(val.slice(-1));
@@ -460,8 +483,14 @@
 
   function reiniciar() {
     document.getElementById("result-no").classList.remove("active");
+    document.getElementById("result-done").classList.remove("active");
     document.getElementById("rut").value = "";
     document.getElementById("step1").classList.add("active");
+    // Reset checkboxes
+    document.querySelectorAll(".service-item").forEach(el => el.classList.remove("selected"));
+    document.querySelectorAll(".service-item input").forEach(cb => cb.checked = false);
+    document.getElementById("btn-enviar").disabled = true;
+    document.getElementById("sending-msg").style.display = "none";
     rutIngresado = "";
   }
 
