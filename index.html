@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caja Los Andes · CicloRecreoVía</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --orange: #f97316;
+    --teal: #00d4aa;
+    --red: #ef4444;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --radius: 12px;
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px 36px;
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+  }
+
+  .logo-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .logo-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--orange);
+  }
+
+  .logo-text {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  h1 {
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 14px 18px;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+    margin-bottom: 24px;
+  }
+
+  input[type="text"]:focus {
+    border-color: var(--orange);
+  }
+
+  input[type="text"]::placeholder {
+    color: var(--border);
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 0.03em;
+  }
+
+  .btn:hover { opacity: 0.9; }
+  .btn:active { transform: scale(0.98); }
+
+  .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  /* Resultado B1 - No pertenece */
+  .result-no {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .result-no .icon {
+    font-size: 56px;
+    line-height: 1;
+  }
+
+  .result-no .msg {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--red);
+    line-height: 1.2;
+  }
+
+  .result-no .sub {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  /* Resultado B2 - Sí pertenece */
+  .result-yes {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .result-yes .icon {
+    font-size: 56px;
+    line-height: 1;
+  }
+
+  .result-yes .msg {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--teal);
+    line-height: 1.2;
+  }
+
+  .services-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .services-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .service-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    text-align: left;
+  }
+
+  .service-item:hover {
+    border-color: var(--teal);
+  }
+
+  .service-item.selected {
+    border-color: var(--teal);
+    background: rgba(0, 212, 170, 0.08);
+  }
+
+  .service-item input[type="checkbox"] {
+    display: none;
+  }
+
+  .check-box {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+    font-size: 13px;
+    color: transparent;
+  }
+
+  .service-item.selected .check-box {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: #0d1117;
+  }
+
+  .service-emoji { font-size: 20px; }
+
+  .service-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* Paso final - Confirmación */
+  .result-done {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .result-done .icon {
+    font-size: 64px;
+    line-height: 1;
+    animation: pop 0.4s ease;
+  }
+
+  .result-done .msg {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--teal);
+    line-height: 1.3;
+  }
+
+  @keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    70% { transform: scale(1.15); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .step { display: none; }
+  .step.active { display: block; }
+  .result-no.active,
+  .result-yes.active,
+  .result-done.active { display: flex; }
+
+  .error-msg {
+    color: var(--red);
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: -16px;
+    margin-bottom: 12px;
+    display: none;
+  }
+
+  .sending {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 8px;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <div class="logo-bar">
+    <div class="logo-dot"></div>
+    <span class="logo-text">CicloRecreoVía × Caja Los Andes</span>
+    <div class="logo-dot"></div>
+  </div>
+
+  <!-- PASO 1: RUT -->
+  <div class="step active" id="step1">
+    <h1>Para saber a qué CAJA perteneces o para obtener beneficios si perteneces a CAJA LOS ANDES</h1>
+    <p class="subtitle" style="margin-top:8px;">Ingresa tu RUT para verificar</p>
+
+    <label for="rut">Tu RUT</label>
+    <input type="text" id="rut" placeholder="Ej: 12345678" maxlength="12" autocomplete="off" />
+    <div class="error-msg" id="error-rut">Ingresa solo números, sin puntos ni dígito verificador.</div>
+
+    <button class="btn" onclick="verificarRUT()">Verificar →</button>
+  </div>
+
+  <!-- RESULTADO B1: No pertenece -->
+  <div class="result-no" id="result-no">
+    <div class="icon">😔</div>
+    <div class="msg">Lo sentimos, no perteneces a CAJA LOS ANDES</div>
+    <div class="sub">Tu RUT no corresponde a esta caja de compensación.</div>
+    <button class="btn" style="background:var(--border); margin-top:8px;" onclick="reiniciar()">Volver a intentar</button>
+  </div>
+
+  <!-- RESULTADO B2: Sí pertenece -->
+  <div class="result-yes" id="result-yes">
+    <div class="icon">🎉</div>
+    <div class="msg">¡Excelente, perteneces a CAJA LOS ANDES!</div>
+
+    <div class="services-label">Indica a qué servicios quieres acceder<br><span style="color:var(--muted); font-weight:600; font-size:13px;">(puedes escoger más de uno)</span></div>
+
+    <div class="services-list">
+      <label class="service-item" onclick="toggleService(this)">
+        <input type="checkbox" value="Kit saludable (Agua + Fruta)">
+        <span class="check-box">✓</span>
+        <span class="service-emoji">🥤</span>
+        <span class="service-name">Kit saludable (Agua + Fruta)</span>
+      </label>
+      <label class="service-item" onclick="toggleService(this)">
+        <input type="checkbox" value="Préstamo de bicicleta">
+        <span class="check-box">✓</span>
+        <span class="service-emoji">🚲</span>
+        <span class="service-name">Préstamo de bicicleta</span>
+      </label>
+      <label class="service-item" onclick="toggleService(this)">
+        <input type="checkbox" value="Reparaciones mecánicas">
+        <span class="check-box">✓</span>
+        <span class="service-emoji">🔧</span>
+        <span class="service-name">Reparaciones mecánicas</span>
+      </label>
+    </div>
+
+    <button class="btn" id="btn-enviar" onclick="enviarServicios()" disabled>Confirmar servicios →</button>
+    <div class="sending" id="sending-msg">Enviando... ⏳</div>
+  </div>
+
+  <!-- PASO FINAL: Confirmación -->
+  <div class="result-done" id="result-done">
+    <div class="icon">✅</div>
+    <div class="msg">¡Listo, acércate a una de las promotoras y reclama el o los servicios que hayas escogido!</div>
+  </div>
+
+</div>
+
+<script>
+  // ── CONFIGURACIÓN ──────────────────────────────────────
+  // Reemplaza esta URL con la de tu Apps Script publicado
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxXrQ1RK0d8GM6MwX7iK31NQegKTXBX6k46c0TjiBzfmsTpPr5YnIe0waFd_nKgmgxfPQ/exec";
+  // ───────────────────────────────────────────────────────
+
+  let rutIngresado = "";
+
+  function verificarRUT() {
+    const input = document.getElementById("rut");
+    const errorEl = document.getElementById("error-rut");
+    const val = input.value.trim().replace(/\./g, "").replace(/-/g, "");
+
+    // Validar que sean solo dígitos
+    if (!/^\d+$/.test(val)) {
+      errorEl.style.display = "block";
+      input.style.borderColor = "var(--red)";
+      return;
+    }
+
+    errorEl.style.display = "none";
+    input.style.borderColor = "var(--border)";
+    rutIngresado = val;
+
+    const ultimoDigito = parseInt(val.slice(-1));
+
+    document.getElementById("step1").classList.remove("active");
+
+    if (ultimoDigito !== 8) {
+      // Ruta B1: No pertenece
+      document.getElementById("result-no").classList.add("active");
+      enviarDatos(rutIngresado, "No pertenece", "");
+    } else {
+      // Ruta B2: Sí pertenece
+      document.getElementById("result-yes").classList.add("active");
+    }
+  }
+
+  function toggleService(el) {
+    const checkbox = el.querySelector("input[type='checkbox']");
+    checkbox.checked = !checkbox.checked;
+    el.classList.toggle("selected", checkbox.checked);
+    actualizarBoton();
+  }
+
+  function actualizarBoton() {
+    const checked = document.querySelectorAll(".service-item input:checked").length;
+    document.getElementById("btn-enviar").disabled = checked === 0;
+  }
+
+  function enviarServicios() {
+    const servicios = [];
+    document.querySelectorAll(".service-item input:checked").forEach(cb => {
+      servicios.push(cb.value);
+    });
+
+    document.getElementById("btn-enviar").disabled = true;
+    document.getElementById("sending-msg").style.display = "block";
+
+    enviarDatos(rutIngresado, "Sí pertenece", servicios.join(" | "), function() {
+      document.getElementById("result-yes").classList.remove("active");
+      document.getElementById("result-done").classList.add("active");
+    });
+  }
+
+  function enviarDatos(rut, pertenece, servicios, callback) {
+    const payload = {
+      timestamp: new Date().toLocaleString("es-CL"),
+      rut: rut,
+      pertenece: pertenece,
+      servicios: servicios
+    };
+
+    fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+    .then(() => { if (callback) callback(); })
+    .catch(() => { if (callback) callback(); }); // Mostrar confirmación aunque falle el envío
+  }
+
+  function reiniciar() {
+    document.getElementById("result-no").classList.remove("active");
+    document.getElementById("rut").value = "";
+    document.getElementById("step1").classList.add("active");
+    rutIngresado = "";
+  }
+
+  // Permitir Enter en el input
+  document.getElementById("rut").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") verificarRUT();
+  });
+</script>
+
+</body>
+</html>
