@@ -6,13 +6,8 @@
 <title>Caja Los Andes · CicloRecreoVía</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --orange: #f5a623;
-    --radius: 14px;
-  }
+  :root { --orange: #f5a623; --radius: 14px; }
 
   body {
     font-family: 'Nunito', sans-serif;
@@ -33,7 +28,6 @@
     width: 100%;
     max-width: 500px;
     text-align: center;
-    backdrop-filter: blur(8px);
   }
 
   .logo-bar {
@@ -43,43 +37,40 @@
     gap: 10px;
     margin-bottom: 24px;
   }
+  .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--orange); }
+  .logo-text { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
 
-  .logo-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--orange);
-  }
-
-  .logo-text {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.7);
-  }
-
-  .services-label {
-    font-size: 26px;
+  .section-label {
+    font-size: 22px;
     font-weight: 900;
     color: #fff;
     text-align: center;
     line-height: 1.3;
-    margin-bottom: 24px;
+    margin-bottom: 14px;
   }
 
-  .services-list {
+  .divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 20px 0; }
+
+  /* Items de selección (servicios, sexo, punto) */
+  .options-list {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    margin-bottom: 24px;
+    gap: 12px;
+    margin-bottom: 20px;
   }
 
-  .service-item {
+  .options-list.row {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .option-item {
+    flex: 1;
     display: flex;
     align-items: center;
-    gap: 18px;
-    padding: 22px 20px;
+    gap: 14px;
+    padding: 18px 16px;
     background: rgba(255,255,255,0.1);
     border: 2px solid rgba(255,255,255,0.2);
     border-radius: var(--radius);
@@ -88,48 +79,44 @@
     text-align: left;
   }
 
-  .service-item:hover { border-color: rgba(255,255,255,0.6); }
+  .option-item:hover { border-color: rgba(255,255,255,0.6); }
+  .option-item.selected { border-color: var(--orange); background: rgba(245,166,35,0.18); }
 
-  .service-item.selected {
-    border-color: var(--orange);
-    background: rgba(245,166,35,0.18);
-  }
-
-  .service-item input[type="checkbox"] { display: none; }
+  .option-item input { display: none; }
 
   .check-box {
-    width: 32px; height: 32px;
+    width: 28px; height: 28px;
     border: 2px solid rgba(255,255,255,0.4);
     border-radius: 8px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 16px;
     color: transparent;
     transition: background 0.2s, border-color 0.2s;
   }
+  .option-item.selected .check-box { background: var(--orange); border-color: var(--orange); color: #fff; }
 
-  .service-item.selected .check-box {
-    background: var(--orange);
-    border-color: var(--orange);
-    color: #fff;
+  /* Para radio (selección única) */
+  .radio-box {
+    width: 28px; height: 28px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
   }
+  .radio-inner { width: 12px; height: 12px; border-radius: 50%; background: transparent; transition: background 0.2s; }
+  .option-item.selected .radio-box { border-color: var(--orange); }
+  .option-item.selected .radio-inner { background: var(--orange); }
 
-  .service-emoji {
-    font-size: 42px;
-    line-height: 1;
-    /* Forzar color real del emoji en todos los navegadores */
-    font-variant-emoji: emoji;
-    -webkit-font-feature-settings: normal;
-  }
+  .option-icon { width: 40px; height: 40px; flex-shrink: 0; }
+  .option-name { font-size: 22px; font-weight: 900; color: #fff; }
 
-  .service-name {
-    font-size: 24px;
-    font-weight: 900;
-    color: #fff;
-  }
-
+  /* Botón enviar */
   .btn {
     width: 100%;
     padding: 22px;
@@ -144,7 +131,6 @@
     cursor: pointer;
     transition: opacity 0.2s, transform 0.1s;
   }
-
   .btn:hover { opacity: 0.9; }
   .btn:active { transform: scale(0.98); }
   .btn:disabled { opacity: 0.35; cursor: not-allowed; }
@@ -163,38 +149,15 @@
     transition: opacity 0.2s;
     margin-top: 8px;
   }
-
   .btn-back:hover { opacity: 0.85; }
 
-  .result-done {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
+  /* Confirmación */
+  .result-done { display: none; flex-direction: column; align-items: center; gap: 20px; }
   .result-done.active { display: flex; }
 
-  .result-done .icon {
-    font-size: 88px;
-    line-height: 1;
-    animation: pop 0.4s ease;
-    font-variant-emoji: emoji;
-  }
-
-  .result-done .msg-listo {
-    font-size: 60px;
-    font-weight: 900;
-    color: var(--orange);
-    line-height: 1;
-  }
-
-  .result-done .msg-sub {
-    font-size: 22px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.4;
-  }
+  .result-done .icon { font-size: 88px; line-height: 1; animation: pop 0.4s ease; }
+  .msg-listo { font-size: 60px; font-weight: 900; color: var(--orange); line-height: 1; }
+  .msg-sub { font-size: 22px; font-weight: 700; color: #fff; line-height: 1.4; }
 
   @keyframes pop {
     0% { transform: scale(0.5); opacity: 0; }
@@ -203,17 +166,12 @@
   }
 
   #pantalla-servicios.oculto { display: none; }
+  .sending { font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 8px; display: none; }
 
-  .sending {
-    font-size: 14px;
-    color: rgba(255,255,255,0.7);
-    margin-top: 8px;
-    display: none;
-  }
+  .error-hint { font-size: 13px; color: #ffe066; font-weight: 700; display: none; margin-top: -8px; margin-bottom: 8px; }
 </style>
 </head>
 <body>
-
 <div class="card">
 
   <div class="logo-bar">
@@ -222,36 +180,128 @@
     <div class="logo-dot"></div>
   </div>
 
-  <!-- PASO 1: Selección de servicios -->
+  <!-- FORMULARIO PRINCIPAL -->
   <div id="pantalla-servicios">
-    <div class="services-label">¿Qué SERVICIO(S) seleccionó el afiliado?</div>
 
-    <div class="services-list">
-      <label class="service-item" onclick="toggleService(this)">
+    <!-- SERVICIOS -->
+    <div class="section-label">¿Qué SERVICIO(S) seleccionó el afiliado?</div>
+    <div class="options-list" id="lista-servicios">
+
+      <label class="option-item" onclick="toggleCheckbox(this)">
         <input type="checkbox" value="Kit (Agua + Fruta)">
         <span class="check-box">✓</span>
-        <span class="service-emoji">🥤</span>
-        <span class="service-name">Kit (Agua + Fruta)</span>
+        <!-- Manzana SVG -->
+        <svg class="option-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 10c-2-6 4-10 8-8" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/>
+          <path d="M20 16c-10 2-16 12-16 22 0 14 10 24 18 24 3 0 6-2 10-2s7 2 10 2c8 0 18-10 18-24 0-10-6-20-16-22-3-1-6 0-9 2a1 1 0 01-6 0c-3-2-6-3-9-2z" fill="#ef4444"/>
+          <path d="M20 16c-10 2-16 12-16 22 0 14 10 24 18 24 3 0 6-2 10-2" fill="#f87171"/>
+          <ellipse cx="24" cy="32" rx="4" ry="7" fill="#fca5a5" opacity="0.5" transform="rotate(-15 24 32)"/>
+        </svg>
+        <span class="option-name">Kit (Agua + Fruta)</span>
       </label>
-      <label class="service-item" onclick="toggleService(this)">
+
+      <label class="option-item" onclick="toggleCheckbox(this)">
         <input type="checkbox" value="Bicicleta">
         <span class="check-box">✓</span>
-        <span class="service-emoji">🚲</span>
-        <span class="service-name">Bicicleta</span>
+        <!-- Bicicleta SVG -->
+        <svg class="option-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="44" r="11" stroke="#60a5fa" stroke-width="3.5"/>
+          <circle cx="50" cy="44" r="11" stroke="#60a5fa" stroke-width="3.5"/>
+          <circle cx="14" cy="44" r="3" fill="#60a5fa"/>
+          <circle cx="50" cy="44" r="3" fill="#60a5fa"/>
+          <path d="M14 44 L26 20 L38 20" stroke="#93c5fd" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M26 20 L32 32 L50 44" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M32 32 L26 44 L14 44" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M36 20 L42 20" stroke="#93c5fd" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="26" cy="20" r="3" fill="#93c5fd"/>
+        </svg>
+        <span class="option-name">Bicicleta</span>
       </label>
-      <label class="service-item" onclick="toggleService(this)">
+
+      <label class="option-item" onclick="toggleCheckbox(this)">
         <input type="checkbox" value="Mecánica">
         <span class="check-box">✓</span>
-        <span class="service-emoji">🔧</span>
-        <span class="service-name">Mecánica</span>
+        <!-- Llave SVG -->
+        <svg class="option-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M44 8a12 12 0 00-11.8 14.2L10 44.4 10 54l9.6 0 22.2-22.2A12 12 0 1044 8z" fill="#fbbf24" stroke="#f59e0b" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="44" cy="20" r="5" fill="#fff" opacity="0.4"/>
+          <rect x="8" y="50" width="10" height="4" rx="2" fill="#f59e0b" transform="rotate(-45 13 52)"/>
+        </svg>
+        <span class="option-name">Mecánica</span>
       </label>
-    </div>
 
-    <button class="btn" id="btn-enviar" onclick="enviarServicios()" disabled>ENVIAR</button>
+    </div>
+    <div class="error-hint" id="err-servicios">Selecciona al menos un servicio.</div>
+
+    <hr class="divider">
+
+    <!-- SEXO -->
+    <div class="section-label">Sexo</div>
+    <div class="options-list row" id="lista-sexo">
+
+      <label class="option-item" onclick="toggleRadio(this, 'lista-sexo')">
+        <input type="radio" name="sexo" value="Hombre">
+        <span class="radio-box"><span class="radio-inner"></span></span>
+        <!-- Hombre SVG -->
+        <svg class="option-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="16" r="10" fill="#60a5fa" stroke="#3b82f6" stroke-width="2"/>
+          <path d="M16 52c0-10 7-18 16-18s16 8 16 18" fill="#3b82f6" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="option-name">Hombre</span>
+      </label>
+
+      <label class="option-item" onclick="toggleRadio(this, 'lista-sexo')">
+        <input type="radio" name="sexo" value="Mujer">
+        <span class="radio-box"><span class="radio-inner"></span></span>
+        <!-- Mujer SVG -->
+        <svg class="option-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="16" r="10" fill="#f472b6" stroke="#ec4899" stroke-width="2"/>
+          <path d="M20 40 Q32 58 44 40" fill="#ec4899" stroke="#db2777" stroke-width="2"/>
+          <path d="M16 34c2-8 8-14 16-14s14 6 16 14" fill="#f9a8d4" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="option-name">Mujer</span>
+      </label>
+
+    </div>
+    <div class="error-hint" id="err-sexo">Selecciona una opción.</div>
+
+    <hr class="divider">
+
+    <!-- PUNTO -->
+    <div class="section-label">Punto</div>
+    <div class="options-list row" id="lista-punto">
+
+      <label class="option-item" onclick="toggleRadio(this, 'lista-punto')">
+        <input type="radio" name="punto" value="Providencia">
+        <span class="radio-box"><span class="radio-inner"></span></span>
+        <!-- Pin SVG -->
+        <svg class="option-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 6C21 6 12 15 12 26c0 16 20 32 20 32s20-16 20-32C52 15 43 6 32 6z" fill="#a78bfa" stroke="#7c3aed" stroke-width="2"/>
+          <circle cx="32" cy="26" r="8" fill="#fff" opacity="0.5"/>
+        </svg>
+        <span class="option-name">Providencia</span>
+      </label>
+
+      <label class="option-item" onclick="toggleRadio(this, 'lista-punto')">
+        <input type="radio" name="punto" value="Ñuñoa">
+        <span class="radio-box"><span class="radio-inner"></span></span>
+        <svg class="option-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 6C21 6 12 15 12 26c0 16 20 32 20 32s20-16 20-32C52 15 43 6 32 6z" fill="#34d399" stroke="#059669" stroke-width="2"/>
+          <circle cx="32" cy="26" r="8" fill="#fff" opacity="0.5"/>
+        </svg>
+        <span class="option-name">Ñuñoa</span>
+      </label>
+
+    </div>
+    <div class="error-hint" id="err-punto">Selecciona una opción.</div>
+
+    <hr class="divider">
+
+    <button class="btn" id="btn-enviar" onclick="enviarFormulario()" disabled>ENVIAR</button>
     <div class="sending" id="sending-msg">Enviando... ⏳</div>
   </div>
 
-  <!-- PASO FINAL: Confirmación -->
+  <!-- CONFIRMACIÓN -->
   <div class="result-done" id="result-done">
     <div class="icon">✅</div>
     <div class="msg-listo">¡LISTO!</div>
@@ -260,27 +310,36 @@
   </div>
 
 </div>
-
 <script>
   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxXrQ1RK0d8GM6MwX7iK31NQegKTXBX6k46c0TjiBzfmsTpPr5YnIe0waFd_nKgmgxfPQ/exec";
 
-  function toggleService(el) {
-    const checkbox = el.querySelector("input[type='checkbox']");
-    checkbox.checked = !checkbox.checked;
-    el.classList.toggle("selected", checkbox.checked);
-    actualizarBoton();
+  function toggleCheckbox(el) {
+    const cb = el.querySelector("input");
+    cb.checked = !cb.checked;
+    el.classList.toggle("selected", cb.checked);
+    validarFormulario();
   }
 
-  function actualizarBoton() {
-    const checked = document.querySelectorAll(".service-item input:checked").length;
-    document.getElementById("btn-enviar").disabled = checked === 0;
+  function toggleRadio(el, grupoId) {
+    const grupo = document.getElementById(grupoId);
+    grupo.querySelectorAll(".option-item").forEach(i => i.classList.remove("selected"));
+    grupo.querySelectorAll("input").forEach(i => i.checked = false);
+    el.classList.add("selected");
+    el.querySelector("input").checked = true;
+    validarFormulario();
   }
 
-  function enviarServicios() {
-    const servicios = [];
-    document.querySelectorAll(".service-item input:checked").forEach(cb => {
-      servicios.push(cb.value);
-    });
+  function validarFormulario() {
+    const servicios = document.querySelectorAll("#lista-servicios input:checked").length > 0;
+    const sexo = document.querySelectorAll("#lista-sexo input:checked").length > 0;
+    const punto = document.querySelectorAll("#lista-punto input:checked").length > 0;
+    document.getElementById("btn-enviar").disabled = !(servicios && sexo && punto);
+  }
+
+  function enviarFormulario() {
+    const servicios = [...document.querySelectorAll("#lista-servicios input:checked")].map(i => i.value);
+    const sexo = document.querySelector("#lista-sexo input:checked")?.value || "";
+    const punto = document.querySelector("#lista-punto input:checked")?.value || "";
 
     document.getElementById("btn-enviar").disabled = true;
     document.getElementById("sending-msg").style.display = "block";
@@ -289,7 +348,9 @@
       timestamp: new Date().toLocaleString("es-CL"),
       rut: "",
       pertenece: "Sí pertenece",
-      servicios: servicios.join(" | ")
+      servicios: servicios.join(" | "),
+      sexo: sexo,
+      punto: punto
     };
 
     fetch(APPS_SCRIPT_URL, {
@@ -310,12 +371,11 @@
   function reiniciar() {
     document.getElementById("result-done").classList.remove("active");
     document.getElementById("pantalla-servicios").classList.remove("oculto");
-    document.querySelectorAll(".service-item").forEach(el => el.classList.remove("selected"));
-    document.querySelectorAll(".service-item input").forEach(cb => cb.checked = false);
+    document.querySelectorAll(".option-item").forEach(el => el.classList.remove("selected"));
+    document.querySelectorAll("input").forEach(i => { i.checked = false; });
     document.getElementById("btn-enviar").disabled = true;
     document.getElementById("sending-msg").style.display = "none";
   }
 </script>
-
 </body>
 </html>
