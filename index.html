@@ -16,7 +16,7 @@
 
   body {
     font-family: 'Nunito', sans-serif;
-    background: linear-gradient(160deg, #00c8e8 0%, #0096c7 100%);
+    background: linear-gradient(160deg, #1a3a6b 0%, #0d2248 100%);
     color: #fff;
     min-height: 100vh;
     display: flex;
@@ -26,8 +26,8 @@
   }
 
   .card {
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
     border-radius: 24px;
     padding: 28px 20px;
     width: 100%;
@@ -55,7 +55,7 @@
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.7);
   }
 
   .services-label {
@@ -64,48 +64,48 @@
     color: #fff;
     text-align: center;
     line-height: 1.3;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
   .services-list {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 14px;
+    margin-bottom: 24px;
   }
 
   .service-item {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 18px 20px;
-    background: rgba(255,255,255,0.15);
-    border: 2px solid rgba(255,255,255,0.25);
+    gap: 18px;
+    padding: 22px 20px;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.2);
     border-radius: var(--radius);
     cursor: pointer;
     transition: border-color 0.2s, background 0.2s;
     text-align: left;
   }
 
-  .service-item:hover { border-color: rgba(255,255,255,0.7); }
+  .service-item:hover { border-color: rgba(255,255,255,0.6); }
 
   .service-item.selected {
-    border-color: #fff;
-    background: rgba(255,255,255,0.28);
+    border-color: var(--orange);
+    background: rgba(245,166,35,0.18);
   }
 
   .service-item input[type="checkbox"] { display: none; }
 
   .check-box {
-    width: 28px; height: 28px;
+    width: 32px; height: 32px;
     border: 2px solid rgba(255,255,255,0.4);
-    border-radius: 7px;
+    border-radius: 8px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 18px;
     color: transparent;
     transition: background 0.2s, border-color 0.2s;
   }
@@ -116,38 +116,45 @@
     color: #fff;
   }
 
-  .service-emoji { font-size: 28px; }
+  .service-emoji {
+    font-size: 42px;
+    line-height: 1;
+    /* Forzar color real del emoji en todos los navegadores */
+    font-variant-emoji: emoji;
+    -webkit-font-feature-settings: normal;
+  }
 
   .service-name {
-    font-size: 18px;
-    font-weight: 800;
+    font-size: 24px;
+    font-weight: 900;
     color: #fff;
   }
 
   .btn {
     width: 100%;
-    padding: 20px;
+    padding: 22px;
     background: var(--orange);
     color: #fff;
     border: none;
     border-radius: var(--radius);
     font-family: 'Nunito', sans-serif;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 900;
+    letter-spacing: 0.06em;
     cursor: pointer;
     transition: opacity 0.2s, transform 0.1s;
   }
 
   .btn:hover { opacity: 0.9; }
   .btn:active { transform: scale(0.98); }
-  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
   .btn-back {
     width: 100%;
     padding: 16px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.12);
     color: #fff;
-    border: 2px solid rgba(255,255,255,0.4);
+    border: 2px solid rgba(255,255,255,0.35);
     border-radius: var(--radius);
     font-family: 'Nunito', sans-serif;
     font-size: 18px;
@@ -159,7 +166,6 @@
 
   .btn-back:hover { opacity: 0.85; }
 
-  /* Pantalla confirmación */
   .result-done {
     display: none;
     flex-direction: column;
@@ -170,15 +176,16 @@
   .result-done.active { display: flex; }
 
   .result-done .icon {
-    font-size: 80px;
+    font-size: 88px;
     line-height: 1;
     animation: pop 0.4s ease;
+    font-variant-emoji: emoji;
   }
 
   .result-done .msg-listo {
-    font-size: 56px;
+    font-size: 60px;
     font-weight: 900;
-    color: #fff;
+    color: var(--orange);
     line-height: 1;
   }
 
@@ -195,7 +202,6 @@
     100% { transform: scale(1); opacity: 1; }
   }
 
-  #pantalla-servicios { display: block; }
   #pantalla-servicios.oculto { display: none; }
 
   .sending {
@@ -222,26 +228,26 @@
 
     <div class="services-list">
       <label class="service-item" onclick="toggleService(this)">
-        <input type="checkbox" value="Kit saludable (Agua + Fruta)">
+        <input type="checkbox" value="Kit (Agua + Fruta)">
         <span class="check-box">✓</span>
         <span class="service-emoji">🥤</span>
-        <span class="service-name">Kit saludable (Agua + Fruta)</span>
+        <span class="service-name">Kit (Agua + Fruta)</span>
       </label>
       <label class="service-item" onclick="toggleService(this)">
-        <input type="checkbox" value="Préstamo de bicicleta">
+        <input type="checkbox" value="Bicicleta">
         <span class="check-box">✓</span>
         <span class="service-emoji">🚲</span>
-        <span class="service-name">Préstamo de bicicleta</span>
+        <span class="service-name">Bicicleta</span>
       </label>
       <label class="service-item" onclick="toggleService(this)">
-        <input type="checkbox" value="Reparaciones mecánicas">
+        <input type="checkbox" value="Mecánica">
         <span class="check-box">✓</span>
         <span class="service-emoji">🔧</span>
-        <span class="service-name">Reparaciones mecánicas</span>
+        <span class="service-name">Mecánica</span>
       </label>
     </div>
 
-    <button class="btn" id="btn-enviar" onclick="enviarServicios()" disabled>Confirmar →</button>
+    <button class="btn" id="btn-enviar" onclick="enviarServicios()" disabled>ENVIAR</button>
     <div class="sending" id="sending-msg">Enviando... ⏳</div>
   </div>
 
