@@ -10,23 +10,14 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #00b4d8;
-    --surface: #0096c7;
-    --border: rgba(255,255,255,0.25);
     --orange: #f5a623;
-    --teal: #ffffff;
-    --red: #ff4d4d;
-    --text: #ffffff;
-    --muted: rgba(255,255,255,0.75);
     --radius: 14px;
-    --btn-confirm: #f5a623;
-    --btn-back: rgba(255,255,255,0.2);
   }
 
   body {
     font-family: 'Nunito', sans-serif;
     background: linear-gradient(160deg, #00c8e8 0%, #0096c7 100%);
-    color: var(--text);
+    color: #fff;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -50,7 +41,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
   .logo-dot {
@@ -67,153 +58,13 @@
     color: rgba(255,255,255,0.8);
   }
 
-  h1 {
-    font-size: 22px;
-    font-weight: 900;
-    line-height: 1.3;
-    color: #fff;
-    margin-bottom: 28px;
-  }
-
-  .rut-label {
-    font-size: 52px;
-    font-weight: 900;
-    color: #fff;
-    letter-spacing: 0.04em;
-    margin-bottom: 16px;
-    margin-top: 8px;
-  }
-
-  input[type="text"] {
-    width: 100%;
-    padding: 18px;
-    background: rgba(255,255,255,0.2);
-    border: 2px solid rgba(255,255,255,0.4);
-    border-radius: var(--radius);
-    color: #fff;
-    font-family: 'Nunito', sans-serif;
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-align: center;
-    outline: none;
-    transition: border-color 0.2s;
-    margin-bottom: 20px;
-  }
-
-  input[type="text"]:focus {
-    border-color: #fff;
-    background: rgba(255,255,255,0.28);
-  }
-
-  input[type="text"]::placeholder {
-    color: rgba(255,255,255,0.4);
-    font-weight: 400;
-    font-size: 18px;
-  }
-
-  .btn {
-    width: 100%;
-    padding: 20px;
-    background: var(--orange);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius);
-    font-family: 'Nunito', sans-serif;
+  .services-label {
     font-size: 26px;
     font-weight: 900;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.1s;
-    letter-spacing: 0.03em;
-  }
-
-  .btn:hover { opacity: 0.9; }
-  .btn:active { transform: scale(0.98); }
-  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-  .btn-back {
-    width: 100%;
-    padding: 16px;
-    background: rgba(255,255,255,0.2);
-    color: #fff;
-    border: 2px solid rgba(255,255,255,0.4);
-    border-radius: var(--radius);
-    font-family: 'Nunito', sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.1s;
-    margin-top: 8px;
-  }
-
-  .btn-back:hover { opacity: 0.85; }
-  .btn-back:active { transform: scale(0.98); }
-
-  /* Resultado B1 - No pertenece */
-  .result-no {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .result-no .icon { font-size: 72px; line-height: 1; }
-
-  .result-no .msg {
-    font-size: 30px;
-    font-weight: 900;
-    color: #fff;
-    line-height: 1.2;
-    background: rgba(255,0,0,0.25);
-    border-radius: 14px;
-    padding: 16px;
-    width: 100%;
-  }
-
-  .result-no .sub {
-    font-size: 16px;
-    color: rgba(255,255,255,0.8);
-  }
-
-  /* Resultado B2 - Sí pertenece */
-  .result-yes {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .result-yes .icon { font-size: 72px; line-height: 1; }
-
-  .result-yes .msg-excelente {
-    font-size: 42px;
-    font-weight: 900;
-    color: #fff;
-    line-height: 1;
-    letter-spacing: 0.04em;
-  }
-
-  .result-yes .msg-sub {
-    font-size: 24px;
-    font-weight: 800;
-    color: #fff;
-    line-height: 1.2;
-    margin-top: -8px;
-  }
-
-  .services-label {
-    font-size: 22px;
-    font-weight: 900;
     color: #fff;
     text-align: center;
     line-height: 1.3;
-  }
-
-  .services-hint {
-    font-size: 15px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.75);
-    margin-top: 4px;
+    margin-bottom: 20px;
   }
 
   .services-list {
@@ -221,6 +72,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin-bottom: 20px;
   }
 
   .service-item {
@@ -246,17 +98,16 @@
   .service-item input[type="checkbox"] { display: none; }
 
   .check-box {
-    width: 28px;
-    height: 28px;
+    width: 28px; height: 28px;
     border: 2px solid rgba(255,255,255,0.4);
     border-radius: 7px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s, border-color 0.2s;
     font-size: 16px;
     color: transparent;
+    transition: background 0.2s, border-color 0.2s;
   }
 
   .service-item.selected .check-box {
@@ -273,13 +124,50 @@
     color: #fff;
   }
 
-  /* Paso final - Confirmación */
+  .btn {
+    width: 100%;
+    padding: 20px;
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+
+  .btn:hover { opacity: 0.9; }
+  .btn:active { transform: scale(0.98); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .btn-back {
+    width: 100%;
+    padding: 16px;
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: var(--radius);
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-top: 8px;
+  }
+
+  .btn-back:hover { opacity: 0.85; }
+
+  /* Pantalla confirmación */
   .result-done {
     display: none;
     flex-direction: column;
     align-items: center;
     gap: 20px;
   }
+
+  .result-done.active { display: flex; }
 
   .result-done .icon {
     font-size: 80px;
@@ -292,7 +180,6 @@
     font-weight: 900;
     color: #fff;
     line-height: 1;
-    letter-spacing: 0.04em;
   }
 
   .result-done .msg-sub {
@@ -308,20 +195,8 @@
     100% { transform: scale(1); opacity: 1; }
   }
 
-  .step { display: none; }
-  .step.active { display: block; }
-  .result-no.active,
-  .result-yes.active,
-  .result-done.active { display: flex; }
-
-  .error-msg {
-    color: #ffe066;
-    font-size: 14px;
-    font-weight: 700;
-    margin-top: -14px;
-    margin-bottom: 14px;
-    display: none;
-  }
+  #pantalla-servicios { display: block; }
+  #pantalla-servicios.oculto { display: none; }
 
   .sending {
     font-size: 14px;
@@ -341,34 +216,9 @@
     <div class="logo-dot"></div>
   </div>
 
-  <!-- PASO 1: RUT -->
-  <div class="step active" id="step1">
-    <h1>Verifica a qué CAJA perteneces y obtén beneficios si perteneces a CAJA LOS ANDES</h1>
-
-    <div class="rut-label">RUT</div>
-
-    <input type="text" id="rut" placeholder="Ej: 12345678" maxlength="12" autocomplete="off" inputmode="numeric" />
-    <div class="error-msg" id="error-rut">Ingresa solo números, sin puntos ni dígito verificador.</div>
-
-    <button class="btn" onclick="verificarRUT()">Verificar →</button>
-  </div>
-
-  <!-- RESULTADO B1: No pertenece -->
-  <div class="result-no" id="result-no">
-    <div class="icon">😔</div>
-    <div class="msg">Lo sentimos, no perteneces a CAJA LOS ANDES</div>
-    <div class="sub">Tu RUT no corresponde a esta caja de compensación.</div>
-    <button class="btn-back" onclick="reiniciar()">← Volver a consulta de RUT</button>
-  </div>
-
-  <!-- RESULTADO B2: Sí pertenece -->
-  <div class="result-yes" id="result-yes">
-    <div class="icon">🎉</div>
-    <div class="msg-excelente">EXCELENTE</div>
-    <div class="msg-sub">¡Perteneces a CAJA LOS ANDES!</div>
-
-    <div class="services-label">Indica a qué servicios quieres acceder</div>
-    <div class="services-hint">(puedes escoger más de uno)</div>
+  <!-- PASO 1: Selección de servicios -->
+  <div id="pantalla-servicios">
+    <div class="services-label">¿Qué SERVICIO(S) seleccionó el afiliado?</div>
 
     <div class="services-list">
       <label class="service-item" onclick="toggleService(this)">
@@ -391,7 +241,7 @@
       </label>
     </div>
 
-    <button class="btn" id="btn-enviar" onclick="enviarServicios()" disabled style="font-size:22px;">Confirmar servicios →</button>
+    <button class="btn" id="btn-enviar" onclick="enviarServicios()" disabled>Confirmar →</button>
     <div class="sending" id="sending-msg">Enviando... ⏳</div>
   </div>
 
@@ -400,41 +250,13 @@
     <div class="icon">✅</div>
     <div class="msg-listo">¡LISTO!</div>
     <div class="msg-sub">Acércate a una de las promotoras y solicita él o los servicios que hayas escogido.</div>
-    <button class="btn-back" onclick="reiniciar()">← Volver a consulta de RUT</button>
+    <button class="btn-back" onclick="reiniciar()">← Nuevo registro</button>
   </div>
 
 </div>
 
 <script>
   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxXrQ1RK0d8GM6MwX7iK31NQegKTXBX6k46c0TjiBzfmsTpPr5YnIe0waFd_nKgmgxfPQ/exec";
-
-  let rutIngresado = "";
-
-  function verificarRUT() {
-    const input = document.getElementById("rut");
-    const errorEl = document.getElementById("error-rut");
-    const val = input.value.trim().replace(/\./g, "").replace(/-/g, "");
-
-    if (!/^\d+$/.test(val)) {
-      errorEl.style.display = "block";
-      input.style.borderColor = "rgba(255,100,100,0.8)";
-      return;
-    }
-
-    errorEl.style.display = "none";
-    input.style.borderColor = "rgba(255,255,255,0.4)";
-    rutIngresado = val;
-
-    const ultimoDigito = parseInt(val.slice(-1));
-    document.getElementById("step1").classList.remove("active");
-
-    if (ultimoDigito !== 8) {
-      document.getElementById("result-no").classList.add("active");
-      enviarDatos(rutIngresado, "No pertenece", "");
-    } else {
-      document.getElementById("result-yes").classList.add("active");
-    }
-  }
 
   function toggleService(el) {
     const checkbox = el.querySelector("input[type='checkbox']");
@@ -457,18 +279,11 @@
     document.getElementById("btn-enviar").disabled = true;
     document.getElementById("sending-msg").style.display = "block";
 
-    enviarDatos(rutIngresado, "Sí pertenece", servicios.join(" | "), function() {
-      document.getElementById("result-yes").classList.remove("active");
-      document.getElementById("result-done").classList.add("active");
-    });
-  }
-
-  function enviarDatos(rut, pertenece, servicios, callback) {
     const payload = {
       timestamp: new Date().toLocaleString("es-CL"),
-      rut: rut,
-      pertenece: pertenece,
-      servicios: servicios
+      rut: "",
+      pertenece: "Sí pertenece",
+      servicios: servicios.join(" | ")
     };
 
     fetch(APPS_SCRIPT_URL, {
@@ -477,26 +292,23 @@
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     })
-    .then(() => { if (callback) callback(); })
-    .catch(() => { if (callback) callback(); });
+    .then(() => mostrarConfirmacion())
+    .catch(() => mostrarConfirmacion());
+  }
+
+  function mostrarConfirmacion() {
+    document.getElementById("pantalla-servicios").classList.add("oculto");
+    document.getElementById("result-done").classList.add("active");
   }
 
   function reiniciar() {
-    document.getElementById("result-no").classList.remove("active");
     document.getElementById("result-done").classList.remove("active");
-    document.getElementById("rut").value = "";
-    document.getElementById("step1").classList.add("active");
-    // Reset checkboxes
+    document.getElementById("pantalla-servicios").classList.remove("oculto");
     document.querySelectorAll(".service-item").forEach(el => el.classList.remove("selected"));
     document.querySelectorAll(".service-item input").forEach(cb => cb.checked = false);
     document.getElementById("btn-enviar").disabled = true;
     document.getElementById("sending-msg").style.display = "none";
-    rutIngresado = "";
   }
-
-  document.getElementById("rut").addEventListener("keydown", function(e) {
-    if (e.key === "Enter") verificarRUT();
-  });
 </script>
 
 </body>
