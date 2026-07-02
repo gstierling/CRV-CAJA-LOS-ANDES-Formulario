@@ -16,95 +16,135 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px;
+    padding: 14px;
   }
 
   .card {
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 18px;
-    padding: 16px 14px;
+    border-radius: 20px;
+    padding: 20px 16px;
     width: 100%;
     max-width: 420px;
     text-align: center;
   }
 
-  .section-label {
-    font-size: 19px;
+  /* ── SERVICIOS ── */
+  .servicios-label {
+    font-size: 28px;
     font-weight: 900;
     color: #fff;
-    text-align: center;
-    margin-bottom: 8px;
     letter-spacing: 0.04em;
+    margin-bottom: 14px;
   }
 
-  .divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 10px 0; }
-
-  .options-list {
-    width: 100%;
+  .servicios-list {
     display: flex;
     flex-direction: column;
-    gap: 7px;
-    margin-bottom: 4px;
+    gap: 10px;
+    margin-bottom: 6px;
   }
 
-  .options-list.row { flex-direction: row; gap: 8px; }
-
-  .option-item {
-    flex: 1;
+  .servicio-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 13px 12px;
+    gap: 14px;
+    padding: 18px 16px;
     background: rgba(255,255,255,0.1);
-    border: 2px solid rgba(255,255,255,0.2);
-    border-radius: 10px;
+    border: 2.5px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
     cursor: pointer;
     transition: border-color 0.15s, background 0.15s;
     text-align: left;
   }
 
-  .option-item:hover { border-color: rgba(255,255,255,0.5); }
-  .option-item.selected { border-color: #f5a623; background: rgba(245,166,35,0.18); }
-  .option-item input { display: none; }
+  .servicio-item:hover { border-color: rgba(255,255,255,0.5); }
+  .servicio-item.selected { border-color: #f5a623; background: rgba(245,166,35,0.2); }
+  .servicio-item input { display: none; }
 
   .check-box {
-    width: 24px; height: 24px;
-    border: 2px solid rgba(255,255,255,0.4);
-    border-radius: 6px; flex-shrink: 0;
+    width: 28px; height: 28px;
+    border: 2.5px solid rgba(255,255,255,0.4);
+    border-radius: 7px; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
-    font-size: 14px; color: transparent;
+    font-size: 16px; color: transparent;
     transition: background 0.15s, border-color 0.15s;
   }
-  .option-item.selected .check-box { background: #f5a623; border-color: #f5a623; color: #fff; }
+  .servicio-item.selected .check-box { background: #f5a623; border-color: #f5a623; color: #fff; }
+
+  .servicio-icon { width: 44px; height: 44px; flex-shrink: 0; }
+
+  .servicio-name {
+    font-size: 26px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+  }
+
+  /* ── DIVISOR ── */
+  .divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 14px 0 10px; }
+
+  /* ── PUNTO ── */
+  .punto-label {
+    font-size: 15px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .punto-list {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+
+  .punto-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 10px;
+    border: 2.5px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s, opacity 0.15s;
+    text-align: center;
+  }
+
+  .punto-item.providencia { background: rgba(245,166,35,0.3); }
+  .punto-item.nunoa       { background: rgba(52,211,153,0.25); }
+  .punto-item.selected    { border-color: #fff; }
+  .punto-item input { display: none; }
 
   .radio-box {
-    width: 24px; height: 24px;
-    border: 2px solid rgba(255,255,255,0.4);
+    width: 20px; height: 20px;
+    border: 2px solid rgba(255,255,255,0.5);
     border-radius: 50%; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
-    transition: border-color 0.15s;
   }
-  .radio-inner { width: 11px; height: 11px; border-radius: 50%; background: transparent; transition: background 0.15s; }
-  .option-item.selected .radio-box { border-color: #f5a623; }
-  .option-item.selected .radio-inner { background: #f5a623; }
+  .radio-inner { width: 10px; height: 10px; border-radius: 50%; background: transparent; transition: background 0.15s; }
+  .punto-item.selected .radio-box { border-color: #fff; }
+  .punto-item.selected .radio-inner { background: #fff; }
 
-  .option-icon { width: 36px; height: 36px; flex-shrink: 0; }
-  .option-name { font-size: 19px; font-weight: 900; color: #fff; line-height: 1.2; }
+  .punto-name { font-size: 17px; font-weight: 900; color: #fff; }
 
+  /* ── BOTÓN ── */
   .btn {
     width: 100%;
-    padding: 16px;
-    background: #f5a623;
+    padding: 17px;
+    background: #e53e3e;
     color: #fff;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-family: 'Nunito', sans-serif;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 900;
     letter-spacing: 0.06em;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 12px;
     transition: opacity 0.2s;
   }
   .btn:disabled { opacity: 0.35; cursor: not-allowed; }
@@ -123,10 +163,11 @@
     margin-top: 8px;
   }
 
+  /* ── CONFIRMACIÓN ── */
   .result-done { display: none; flex-direction: column; align-items: center; gap: 16px; }
   .result-done.active { display: flex; }
-  .result-done .icon { font-size: 70px; animation: pop 0.4s ease; }
-  .msg-listo { font-size: 52px; font-weight: 900; color: #f5a623; }
+  .result-done .icon { font-size: 72px; animation: pop 0.4s ease; }
+  .msg-listo { font-size: 54px; font-weight: 900; color: #f5a623; }
   .msg-sub { font-size: 20px; font-weight: 700; line-height: 1.4; }
 
   @keyframes pop {
@@ -135,35 +176,35 @@
     100% { transform: scale(1); opacity: 1; }
   }
 
-  #pantalla-servicios.oculto { display: none; }
+  #pantalla-form.oculto { display: none; }
   .sending { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px; display: none; }
 </style>
 </head>
 <body>
 <div class="card">
 
-  <div id="pantalla-servicios">
+  <div id="pantalla-form">
 
     <!-- SERVICIOS -->
-    <div class="section-label">SERVICIO(S) ESCOGIDOS</div>
-    <div class="options-list" id="lista-servicios">
+    <div class="servicios-label">SERVICIO(S) ESCOGIDOS</div>
+    <div class="servicios-list" id="lista-servicios">
 
-      <label class="option-item" onclick="toggleCheckbox(this)">
+      <label class="servicio-item" onclick="toggleCheckbox(this)">
         <input type="checkbox" value="Kit Agua-Fruta">
         <span class="check-box">✓</span>
-        <svg class="option-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="servicio-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M32 10c-2-6 4-10 8-8" stroke="#4ade80" stroke-width="3" stroke-linecap="round"/>
           <path d="M20 16c-10 2-16 12-16 22 0 14 10 24 18 24 3 0 6-2 10-2s7 2 10 2c8 0 18-10 18-24 0-10-6-20-16-22-3-1-6 0-9 2a1 1 0 01-6 0c-3-2-6-3-9-2z" fill="#ef4444"/>
           <path d="M20 16c-10 2-16 12-16 22 0 14 10 24 18 24 3 0 6-2 10-2" fill="#f87171"/>
           <ellipse cx="24" cy="32" rx="4" ry="7" fill="#fca5a5" opacity="0.5" transform="rotate(-15 24 32)"/>
         </svg>
-        <span class="option-name">Kit Agua-Fruta</span>
+        <span class="servicio-name">Kit Agua-Fruta</span>
       </label>
 
-      <label class="option-item" onclick="toggleCheckbox(this)">
+      <label class="servicio-item" onclick="toggleCheckbox(this)">
         <input type="checkbox" value="Bicicleta">
         <span class="check-box">✓</span>
-        <svg class="option-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="servicio-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="14" cy="44" r="11" stroke="#60a5fa" stroke-width="3.5"/>
           <circle cx="50" cy="44" r="11" stroke="#60a5fa" stroke-width="3.5"/>
           <circle cx="14" cy="44" r="3" fill="#60a5fa"/>
@@ -174,46 +215,17 @@
           <path d="M36 20 L42 20" stroke="#93c5fd" stroke-width="3" stroke-linecap="round"/>
           <circle cx="26" cy="20" r="3" fill="#93c5fd"/>
         </svg>
-        <span class="option-name">Bicicleta</span>
+        <span class="servicio-name">Bicicleta</span>
       </label>
 
-      <label class="option-item" onclick="toggleCheckbox(this)">
+      <label class="servicio-item" onclick="toggleCheckbox(this)">
         <input type="checkbox" value="Mecánica">
         <span class="check-box">✓</span>
-        <svg class="option-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="servicio-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M44 8a12 12 0 00-11.8 14.2L10 44.4 10 54l9.6 0 22.2-22.2A12 12 0 1044 8z" fill="#fbbf24" stroke="#f59e0b" stroke-width="1.5" stroke-linejoin="round"/>
           <circle cx="44" cy="20" r="5" fill="#fff" opacity="0.4"/>
         </svg>
-        <span class="option-name">Mecánica</span>
-      </label>
-
-    </div>
-
-    <hr class="divider">
-
-    <!-- SEXO -->
-    <div class="section-label">SEXO</div>
-    <div class="options-list row" id="lista-sexo">
-
-      <label class="option-item" onclick="toggleRadio(this, 'lista-sexo')">
-        <input type="radio" name="sexo" value="Hombre">
-        <span class="radio-box"><span class="radio-inner"></span></span>
-        <svg class="option-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="32" cy="16" r="10" fill="#60a5fa" stroke="#3b82f6" stroke-width="2"/>
-          <path d="M16 52c0-10 7-18 16-18s16 8 16 18" fill="#3b82f6" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <span class="option-name">Hombre</span>
-      </label>
-
-      <label class="option-item" onclick="toggleRadio(this, 'lista-sexo')">
-        <input type="radio" name="sexo" value="Mujer">
-        <span class="radio-box"><span class="radio-inner"></span></span>
-        <svg class="option-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="32" cy="16" r="10" fill="#f472b6" stroke="#ec4899" stroke-width="2"/>
-          <path d="M20 40 Q32 58 44 40" fill="#ec4899" stroke="#db2777" stroke-width="2"/>
-          <path d="M16 34c2-8 8-14 16-14s14 6 16 14" fill="#f9a8d4" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <span class="option-name">Mujer</span>
+        <span class="servicio-name">Mecánica</span>
       </label>
 
     </div>
@@ -221,27 +233,19 @@
     <hr class="divider">
 
     <!-- PUNTO -->
-    <div class="section-label">PUNTO</div>
-    <div class="options-list row" id="lista-punto">
+    <div class="punto-label">PUNTO</div>
+    <div class="punto-list" id="lista-punto">
 
-      <label class="option-item" onclick="toggleRadio(this, 'lista-punto')">
+      <label class="punto-item providencia" onclick="toggleRadio(this, 'lista-punto')">
         <input type="radio" name="punto" value="Providencia">
         <span class="radio-box"><span class="radio-inner"></span></span>
-        <svg class="option-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M32 6C21 6 12 15 12 26c0 16 20 32 20 32s20-16 20-32C52 15 43 6 32 6z" fill="#a78bfa" stroke="#7c3aed" stroke-width="2"/>
-          <circle cx="32" cy="26" r="8" fill="#fff" opacity="0.5"/>
-        </svg>
-        <span class="option-name">Providencia</span>
+        <span class="punto-name">Providencia</span>
       </label>
 
-      <label class="option-item" onclick="toggleRadio(this, 'lista-punto')">
+      <label class="punto-item nunoa" onclick="toggleRadio(this, 'lista-punto')">
         <input type="radio" name="punto" value="Ñuñoa">
         <span class="radio-box"><span class="radio-inner"></span></span>
-        <svg class="option-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M32 6C21 6 12 15 12 26c0 16 20 32 20 32s20-16 20-32C52 15 43 6 32 6z" fill="#34d399" stroke="#059669" stroke-width="2"/>
-          <circle cx="32" cy="26" r="8" fill="#fff" opacity="0.5"/>
-        </svg>
-        <span class="option-name">Ñuñoa</span>
+        <span class="punto-name">Ñuñoa</span>
       </label>
 
     </div>
@@ -270,7 +274,7 @@
   }
 
   function toggleRadio(el, grupoId) {
-    document.getElementById(grupoId).querySelectorAll(".option-item").forEach(i => i.classList.remove("selected"));
+    document.getElementById(grupoId).querySelectorAll(".punto-item").forEach(i => i.classList.remove("selected"));
     document.getElementById(grupoId).querySelectorAll("input").forEach(i => i.checked = false);
     el.classList.add("selected");
     el.querySelector("input").checked = true;
@@ -279,14 +283,12 @@
 
   function validarFormulario() {
     const ok = document.querySelectorAll("#lista-servicios input:checked").length > 0
-            && document.querySelectorAll("#lista-sexo input:checked").length > 0
             && document.querySelectorAll("#lista-punto input:checked").length > 0;
     document.getElementById("btn-enviar").disabled = !ok;
   }
 
   function enviarFormulario() {
     const servicios = [...document.querySelectorAll("#lista-servicios input:checked")].map(i => i.value);
-    const sexo = document.querySelector("#lista-sexo input:checked")?.value || "";
     const punto = document.querySelector("#lista-punto input:checked")?.value || "";
 
     document.getElementById("btn-enviar").disabled = true;
@@ -298,7 +300,6 @@
       body: JSON.stringify({
         timestamp: new Date().toLocaleString("es-CL"),
         servicios: servicios.join(" | "),
-        sexo: sexo,
         punto: punto
       })
     })
@@ -307,14 +308,14 @@
   }
 
   function mostrarConfirmacion() {
-    document.getElementById("pantalla-servicios").classList.add("oculto");
+    document.getElementById("pantalla-form").classList.add("oculto");
     document.getElementById("result-done").classList.add("active");
   }
 
   function reiniciar() {
     document.getElementById("result-done").classList.remove("active");
-    document.getElementById("pantalla-servicios").classList.remove("oculto");
-    document.querySelectorAll(".option-item").forEach(el => el.classList.remove("selected"));
+    document.getElementById("pantalla-form").classList.remove("oculto");
+    document.querySelectorAll(".servicio-item, .punto-item").forEach(el => el.classList.remove("selected"));
     document.querySelectorAll("input").forEach(i => i.checked = false);
     document.getElementById("btn-enviar").disabled = true;
     document.getElementById("sending-msg").style.display = "none";
