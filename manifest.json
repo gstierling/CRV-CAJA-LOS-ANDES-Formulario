@@ -1,0 +1,9 @@
+{
+  "name": "CRV Caja Los Andes",
+  "short_name": "CRV CLA",
+  "display": "fullscreen",
+  "start_url": "./formulario_caja_los_andes.html",
+  "background_color": "#0d2248",
+  "theme_color": "#0d2248",
+  "orientation": "portrait"
+}
