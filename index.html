@@ -122,6 +122,50 @@
 
   #pantalla-form.oculto { display: none; }
   .sending { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px; display: none; }
+
+  .listo-txt {
+    font-size: 48px; font-weight: 900; color: #fff;
+    letter-spacing: 0.04em; line-height: 1;
+  }
+  .total-sub { font-size: 17px; font-weight: 900; color: rgba(255,255,255,0.7); letter-spacing: 0.08em; text-transform: uppercase; }
+  .total-general-bloque { display: flex; flex-direction: column; align-items: center; gap: 2px; margin-top: 4px; }
+  .total-general-num { font-size: 52px; font-weight: 900; color: #fff; line-height: 1; }
+  .total-general-sub { font-size: 14px; font-weight: 900; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; }
+
+  .barra-contenedor { width: 100%; margin-top: 6px; }
+  .barra-track {
+    position: relative;
+    width: 100%; height: 28px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .barra-fill {
+    position: absolute; left: 0; top: 0; height: 100%;
+    background: linear-gradient(90deg, #34d399, #f5a623);
+    border-radius: 14px;
+    width: 0%;
+    transition: width 0.8s ease;
+  }
+  .barra-marker {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: #fff; color: #0d2248;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px; font-weight: 900;
+    padding: 2px 7px; border-radius: 8px;
+    white-space: nowrap;
+    transition: left 0.8s ease;
+  }
+  .barra-labels {
+    display: flex; justify-content: space-between;
+    font-size: 11px; font-weight: 700;
+    color: rgba(255,255,255,0.4);
+    margin-top: 4px; padding: 0 2px;
+  }
+  .barra-pct {
+    font-size: 22px; font-weight: 900; color: #fff;
+    margin-top: 4px; letter-spacing: 0.04em;
+  }
 </style>
 </head>
 <body>
@@ -194,19 +238,40 @@
 
   <!-- CONFIRMACIÓN -->
   <div class="result-done" id="result-done">
+    <div class="listo-txt">¡LISTO!</div>
     <div class="llevamos-txt">LLEVAMOS</div>
     <div class="totales-row">
-      <div class="total-bloque">
-        <div class="total-num nunoa" id="total-nunoa">—</div>
-        <div class="total-sub">Ñuñoa</div>
-      </div>
-      <div class="separador-total">·</div>
       <div class="total-bloque">
         <div class="total-num providencia" id="total-providencia">—</div>
         <div class="total-sub">Providencia</div>
       </div>
+      <div class="separador-total">·</div>
+      <div class="total-bloque">
+        <div class="total-num nunoa" id="total-nunoa">—</div>
+        <div class="total-sub">Ñuñoa</div>
+      </div>
     </div>
     <div class="transacciones-txt">transacciones</div>
+    <div class="total-general-bloque">
+      <div class="total-general-num" id="total-general">—</div>
+      <div class="total-general-sub">TOTAL</div>
+    </div>
+
+    <div class="barra-contenedor">
+      <div class="barra-track">
+        <div class="barra-fill" id="barra-fill"></div>
+        <div class="barra-marker" id="barra-marker"></div>
+      </div>
+      <div class="barra-labels">
+        <span>0</span>
+        <span>200</span>
+        <span>400</span>
+        <span>600</span>
+        <span>806</span>
+      </div>
+      <div class="barra-pct" id="barra-pct">—%</div>
+    </div>
+
     <button class="btn-nuevo" onclick="reiniciar()">← NUEVO REGISTRO</button>
   </div>
 
@@ -255,6 +320,18 @@
       .then(data => {
         document.getElementById("total-nunoa").textContent = data.nunoa ?? "?";
         document.getElementById("total-providencia").textContent = data.providencia ?? "?";
+        const total = (data.nunoa ?? 0) + (data.providencia ?? 0);
+        document.getElementById("total-general").textContent = total;
+        const META = 806;
+        const pct = Math.min((total / META) * 100, 100);
+        const pctStr = pct.toFixed(1) + "%";
+        document.getElementById("barra-fill").style.width = pct + "%";
+        document.getElementById("barra-pct").textContent = pctStr + " de la meta";
+        const marker = document.getElementById("barra-marker");
+        marker.textContent = pctStr;
+        // Posicionar el marcador dentro de la barra sin salirse
+        const markerPct = Math.min(Math.max(pct, 5), 88);
+        marker.style.left = markerPct + "%";
         mostrarConfirmacion();
       })
       .catch(() => {
