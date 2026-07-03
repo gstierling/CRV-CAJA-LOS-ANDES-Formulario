@@ -29,35 +29,21 @@
     text-align: center;
   }
 
-  /* ── SERVICIOS ── */
   .servicios-label {
-    font-size: 28px;
-    font-weight: 900;
-    color: #fff;
-    letter-spacing: 0.04em;
-    margin-bottom: 14px;
+    font-size: 28px; font-weight: 900; color: #fff;
+    letter-spacing: 0.04em; margin-bottom: 14px;
   }
 
-  .servicios-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 6px;
-  }
+  .servicios-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 6px; }
 
   .servicio-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
+    display: flex; align-items: center; gap: 14px;
     padding: 18px 16px;
     background: rgba(255,255,255,0.1);
     border: 2.5px solid rgba(255,255,255,0.2);
-    border-radius: 12px;
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-    text-align: left;
+    border-radius: 12px; cursor: pointer;
+    transition: border-color 0.15s, background 0.15s; text-align: left;
   }
-
   .servicio-item:hover { border-color: rgba(255,255,255,0.5); }
   .servicio-item.selected { border-color: #f5a623; background: rgba(245,166,35,0.2); }
   .servicio-item input { display: none; }
@@ -71,158 +57,67 @@
     transition: background 0.15s, border-color 0.15s;
   }
   .servicio-item.selected .check-box { background: #f5a623; border-color: #f5a623; color: #fff; }
-
   .servicio-icon { width: 44px; height: 44px; flex-shrink: 0; }
-
-  .servicio-name {
-    font-size: 26px;
-    font-weight: 900;
-    color: #fff;
-    line-height: 1.1;
-  }
+  .servicio-name { font-size: 26px; font-weight: 900; color: #fff; line-height: 1.1; }
 
   .divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 14px 0 10px; }
 
-  /* ── PUNTO ── */
   .punto-label {
-    font-size: 15px;
-    font-weight: 900;
-    color: rgba(255,255,255,0.6);
-    letter-spacing: 0.1em;
-    margin-bottom: 8px;
+    font-size: 15px; font-weight: 900;
+    color: rgba(255,255,255,0.6); letter-spacing: 0.1em; margin-bottom: 8px;
   }
-
-  .punto-list {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    margin-bottom: 4px;
-  }
-
+  .punto-list { display: flex; flex-direction: row; gap: 10px; margin-bottom: 4px; }
   .punto-item {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 12px 10px;
-    border: 2.5px solid transparent;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: border-color 0.15s, opacity 0.15s;
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 12px 10px;
+    border: 2.5px solid transparent; border-radius: 10px;
+    cursor: pointer; transition: border-color 0.15s;
   }
-
   .punto-item.providencia { background: rgba(245,166,35,0.3); }
   .punto-item.nunoa       { background: rgba(52,211,153,0.25); }
   .punto-item.selected    { border-color: #fff; }
   .punto-item input { display: none; }
-
   .radio-box {
-    width: 20px; height: 20px;
-    border: 2px solid rgba(255,255,255,0.5);
-    border-radius: 50%; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
+    width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
   }
   .radio-inner { width: 10px; height: 10px; border-radius: 50%; background: transparent; transition: background 0.15s; }
   .punto-item.selected .radio-box { border-color: #fff; }
   .punto-item.selected .radio-inner { background: #fff; }
   .punto-name { font-size: 17px; font-weight: 900; color: #fff; }
 
-  /* ── BOTÓN ENVIAR ── */
   .btn {
-    width: 100%;
-    padding: 17px;
-    background: #e53e3e;
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 26px;
-    font-weight: 900;
-    letter-spacing: 0.06em;
-    cursor: pointer;
-    margin-top: 12px;
-    transition: opacity 0.2s;
+    width: 100%; padding: 17px; background: #e53e3e; color: #fff;
+    border: none; border-radius: 12px; font-family: 'Nunito', sans-serif;
+    font-size: 26px; font-weight: 900; letter-spacing: 0.06em;
+    cursor: pointer; margin-top: 12px; transition: opacity 0.2s;
   }
   .btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
-  /* ── CONFIRMACIÓN ── */
-  .result-done { display: none; flex-direction: column; align-items: center; gap: 10px; }
+  /* CONFIRMACIÓN */
+  .result-done { display: none; flex-direction: column; align-items: center; gap: 12px; }
   .result-done.active { display: flex; }
 
-  .llevamos-txt {
-    font-size: 22px;
-    font-weight: 700;
-    color: rgba(255,255,255,0.75);
-    letter-spacing: 0.06em;
-  }
+  .llevamos-txt { font-size: 22px; font-weight: 700; color: rgba(255,255,255,0.75); letter-spacing: 0.06em; }
 
-  .totales-row {
-    display: flex;
-    gap: 16px;
-    align-items: flex-end;
-    justify-content: center;
-  }
+  .totales-row { display: flex; gap: 16px; align-items: flex-end; justify-content: center; }
 
-  .total-bloque {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-  }
+  .total-bloque { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 
-  .total-num {
-    font-size: 80px;
-    font-weight: 900;
-    line-height: 1;
-  }
-
+  .total-num { font-size: 80px; font-weight: 900; line-height: 1; }
   .total-num.nunoa       { color: #34d399; }
   .total-num.providencia { color: #f5a623; }
 
-  .total-sub {
-    font-size: 13px;
-    font-weight: 700;
-    color: rgba(255,255,255,0.55);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
+  .total-sub { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.55); letter-spacing: 0.08em; text-transform: uppercase; }
 
-  .separador-total {
-    font-size: 60px;
-    font-weight: 900;
-    color: rgba(255,255,255,0.2);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
+  .separador-total { font-size: 60px; font-weight: 900; color: rgba(255,255,255,0.2); line-height: 1; margin-bottom: 6px; }
 
-  .transacciones-txt {
-    font-size: 18px;
-    font-weight: 700;
-    color: rgba(255,255,255,0.6);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
+  .transacciones-txt { font-size: 18px; font-weight: 700; color: rgba(255,255,255,0.6); letter-spacing: 0.1em; text-transform: uppercase; }
 
   .btn-nuevo {
-    width: 100%;
-    padding: 20px;
-    background: #e53e3e;
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 26px;
-    font-weight: 900;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: opacity 0.2s;
-  }
-  .btn-nuevo:hover { opacity: 0.9; }
-
-  .cargando-txt {
-    font-size: 14px;
-    color: rgba(255,255,255,0.5);
+    width: 100%; padding: 20px; background: #e53e3e; color: #fff;
+    border: none; border-radius: 12px; font-family: 'Nunito', sans-serif;
+    font-size: 26px; font-weight: 900; cursor: pointer; margin-top: 10px;
   }
 
   #pantalla-form.oculto { display: none; }
@@ -233,8 +128,6 @@
 <div class="card">
 
   <div id="pantalla-form">
-
-    <!-- SERVICIOS -->
     <div class="servicios-label">SERVICIO(S) ESCOGIDOS</div>
     <div class="servicios-list" id="lista-servicios">
 
@@ -281,7 +174,6 @@
 
     <hr class="divider">
 
-    <!-- PUNTO -->
     <div class="punto-label">PUNTO</div>
     <div class="punto-list" id="lista-punto">
       <label class="punto-item providencia" onclick="toggleRadio(this, 'lista-punto')">
@@ -321,8 +213,6 @@
 </div>
 <script>
   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzVRz7O5kz-8hza5VlDtecNxc3gv0EckdrxS_pxNZC6D1K1QsfIaQnDHrmAN9PTL0iBag/exec";
-  const SHEET_ID = "1J48WDExtFgjx22Zf9rjTR8IdhAmffc_Dzpw086Cimeo";
-  const SHEET_CSV = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Respuestas`;
 
   function toggleCheckbox(el) {
     const cb = el.querySelector("input");
@@ -352,8 +242,11 @@
     document.getElementById("btn-enviar").disabled = true;
     document.getElementById("sending-msg").style.display = "block";
 
+    // Usamos XHR en lugar de fetch para poder leer la respuesta con mode no-cors no funciona
+    // En su lugar hacemos dos llamadas: POST con no-cors, luego GET para leer totales
     fetch(APPS_SCRIPT_URL, {
-      method: "POST", mode: "no-cors",
+      method: "POST",
+      mode: "no-cors",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         timestamp: new Date().toLocaleString("es-CL"),
@@ -362,33 +255,21 @@
       })
     })
     .then(() => {
-      // Esperar un momento para que el Sheet registre antes de leer
-      setTimeout(() => cargarTotales(), 1500);
+      // Esperar que el Sheet registre y luego consultar totales vía GET
+      setTimeout(() => {
+        fetch(APPS_SCRIPT_URL)
+          .then(r => r.json())
+          .then(data => {
+            if (data.totales) {
+              document.getElementById("total-nunoa").textContent = data.totales.nunoa;
+              document.getElementById("total-providencia").textContent = data.totales.providencia;
+            }
+            mostrarConfirmacion();
+          })
+          .catch(() => mostrarConfirmacion());
+      }, 2000);
     })
-    .catch(() => setTimeout(() => cargarTotales(), 1500));
-  }
-
-  function cargarTotales() {
-    fetch(SHEET_CSV + "&t=" + Date.now())
-      .then(r => r.text())
-      .then(csv => {
-        const filas = csv.trim().split("\n").slice(1); // saltar encabezado
-        let nunoa = 0, providencia = 0;
-        filas.forEach(fila => {
-          const cols = fila.split(",");
-          const punto = (cols[1] || "").replace(/"/g, "").trim();
-          if (punto === "Ñuñoa") nunoa++;
-          if (punto === "Providencia") providencia++;
-        });
-        document.getElementById("total-nunoa").textContent = nunoa;
-        document.getElementById("total-providencia").textContent = providencia;
-        mostrarConfirmacion();
-      })
-      .catch(() => {
-        document.getElementById("total-nunoa").textContent = "?";
-        document.getElementById("total-providencia").textContent = "?";
-        mostrarConfirmacion();
-      });
+    .catch(() => mostrarConfirmacion());
   }
 
   function mostrarConfirmacion() {
