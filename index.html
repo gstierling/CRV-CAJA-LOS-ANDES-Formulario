@@ -3,18 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
 <title>Caja Los Andes · CRV</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
 
   body {
     font-family: 'Nunito', sans-serif;
     background: linear-gradient(160deg, #1a3a6b 0%, #0d2248 100%);
     color: #fff;
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     padding: 14px;
   }
@@ -27,6 +36,9 @@
     width: 100%;
     max-width: 420px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .servicios-label {
