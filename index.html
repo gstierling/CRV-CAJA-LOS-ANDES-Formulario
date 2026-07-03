@@ -242,34 +242,26 @@
     document.getElementById("btn-enviar").disabled = true;
     document.getElementById("sending-msg").style.display = "block";
 
-    // Usamos XHR en lugar de fetch para poder leer la respuesta con mode no-cors no funciona
-    // En su lugar hacemos dos llamadas: POST con no-cors, luego GET para leer totales
-    fetch(APPS_SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        timestamp: new Date().toLocaleString("es-CL"),
-        servicios: servicios.join(" | "),
-        punto: punto
+    const ts = new Date().toLocaleString("es-CL");
+    const params = new URLSearchParams({
+      accion: "registrar",
+      timestamp: ts,
+      servicios: servicios.join(" | "),
+      punto: punto
+    });
+
+    fetch(APPS_SCRIPT_URL + "?" + params.toString())
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById("total-nunoa").textContent = data.nunoa ?? "?";
+        document.getElementById("total-providencia").textContent = data.providencia ?? "?";
+        mostrarConfirmacion();
       })
-    })
-    .then(() => {
-      // Esperar que el Sheet registre y luego consultar totales vía GET
-      setTimeout(() => {
-        fetch(APPS_SCRIPT_URL)
-          .then(r => r.json())
-          .then(data => {
-            if (data.totales) {
-              document.getElementById("total-nunoa").textContent = data.totales.nunoa;
-              document.getElementById("total-providencia").textContent = data.totales.providencia;
-            }
-            mostrarConfirmacion();
-          })
-          .catch(() => mostrarConfirmacion());
-      }, 2000);
-    })
-    .catch(() => mostrarConfirmacion());
+      .catch(() => {
+        document.getElementById("total-nunoa").textContent = "?";
+        document.getElementById("total-providencia").textContent = "?";
+        mostrarConfirmacion();
+      });
   }
 
   function mostrarConfirmacion() {
