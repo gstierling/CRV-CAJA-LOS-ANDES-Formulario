@@ -81,7 +81,6 @@
     line-height: 1.1;
   }
 
-  /* ── DIVISOR ── */
   .divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 14px 0 10px; }
 
   /* ── PUNTO ── */
@@ -111,7 +110,6 @@
     border-radius: 10px;
     cursor: pointer;
     transition: border-color 0.15s, opacity 0.15s;
-    text-align: center;
   }
 
   .punto-item.providencia { background: rgba(245,166,35,0.3); }
@@ -128,10 +126,9 @@
   .radio-inner { width: 10px; height: 10px; border-radius: 50%; background: transparent; transition: background 0.15s; }
   .punto-item.selected .radio-box { border-color: #fff; }
   .punto-item.selected .radio-inner { background: #fff; }
-
   .punto-name { font-size: 17px; font-weight: 900; color: #fff; }
 
-  /* ── BOTÓN ── */
+  /* ── BOTÓN ENVIAR ── */
   .btn {
     width: 100%;
     padding: 17px;
@@ -149,31 +146,83 @@
   }
   .btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
-  .btn-back {
-    width: 100%;
-    padding: 12px;
-    background: rgba(255,255,255,0.12);
-    color: #fff;
-    border: 2px solid rgba(255,255,255,0.3);
-    border-radius: 10px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 16px;
-    font-weight: 800;
-    cursor: pointer;
-    margin-top: 8px;
+  /* ── CONFIRMACIÓN ── */
+  .result-done { display: none; flex-direction: column; align-items: center; gap: 10px; }
+  .result-done.active { display: flex; }
+
+  .llevamos-txt {
+    font-size: 22px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.06em;
   }
 
-  /* ── CONFIRMACIÓN ── */
-  .result-done { display: none; flex-direction: column; align-items: center; gap: 16px; }
-  .result-done.active { display: flex; }
-  .result-done .icon { font-size: 72px; animation: pop 0.4s ease; }
-  .msg-listo { font-size: 54px; font-weight: 900; color: #f5a623; }
-  .msg-sub { font-size: 20px; font-weight: 700; line-height: 1.4; }
+  .totales-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+    justify-content: center;
+  }
 
-  @keyframes pop {
-    0% { transform: scale(0.5); opacity: 0; }
-    70% { transform: scale(1.15); }
-    100% { transform: scale(1); opacity: 1; }
+  .total-bloque {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .total-num {
+    font-size: 80px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .total-num.nunoa       { color: #34d399; }
+  .total-num.providencia { color: #f5a623; }
+
+  .total-sub {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .separador-total {
+    font-size: 60px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.2);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .transacciones-txt {
+    font-size: 18px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .btn-nuevo {
+    width: 100%;
+    padding: 20px;
+    background: #e53e3e;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: opacity 0.2s;
+  }
+  .btn-nuevo:hover { opacity: 0.9; }
+
+  .cargando-txt {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
   }
 
   #pantalla-form.oculto { display: none; }
@@ -235,19 +284,16 @@
     <!-- PUNTO -->
     <div class="punto-label">PUNTO</div>
     <div class="punto-list" id="lista-punto">
-
       <label class="punto-item providencia" onclick="toggleRadio(this, 'lista-punto')">
         <input type="radio" name="punto" value="Providencia">
         <span class="radio-box"><span class="radio-inner"></span></span>
         <span class="punto-name">Providencia</span>
       </label>
-
       <label class="punto-item nunoa" onclick="toggleRadio(this, 'lista-punto')">
         <input type="radio" name="punto" value="Ñuñoa">
         <span class="radio-box"><span class="radio-inner"></span></span>
         <span class="punto-name">Ñuñoa</span>
       </label>
-
     </div>
 
     <button class="btn" id="btn-enviar" onclick="enviarFormulario()" disabled>ENVIAR</button>
@@ -256,15 +302,27 @@
 
   <!-- CONFIRMACIÓN -->
   <div class="result-done" id="result-done">
-    <div class="icon">✅</div>
-    <div class="msg-listo">¡LISTO!</div>
-    <div class="msg-sub">Acércate a una de las promotoras y solicita él o los servicios que hayas escogido.</div>
-    <button class="btn-back" onclick="reiniciar()">← Nuevo registro</button>
+    <div class="llevamos-txt">LLEVAMOS</div>
+    <div class="totales-row">
+      <div class="total-bloque">
+        <div class="total-num nunoa" id="total-nunoa">—</div>
+        <div class="total-sub">Ñuñoa</div>
+      </div>
+      <div class="separador-total">·</div>
+      <div class="total-bloque">
+        <div class="total-num providencia" id="total-providencia">—</div>
+        <div class="total-sub">Providencia</div>
+      </div>
+    </div>
+    <div class="transacciones-txt">transacciones</div>
+    <button class="btn-nuevo" onclick="reiniciar()">← NUEVO REGISTRO</button>
   </div>
 
 </div>
 <script>
   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzVRz7O5kz-8hza5VlDtecNxc3gv0EckdrxS_pxNZC6D1K1QsfIaQnDHrmAN9PTL0iBag/exec";
+  const SHEET_ID = "1J48WDExtFgjx22Zf9rjTR8IdhAmffc_Dzpw086Cimeo";
+  const SHEET_CSV = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Respuestas`;
 
   function toggleCheckbox(el) {
     const cb = el.querySelector("input");
@@ -303,8 +361,34 @@
         punto: punto
       })
     })
-    .then(() => mostrarConfirmacion())
-    .catch(() => mostrarConfirmacion());
+    .then(() => {
+      // Esperar un momento para que el Sheet registre antes de leer
+      setTimeout(() => cargarTotales(), 1500);
+    })
+    .catch(() => setTimeout(() => cargarTotales(), 1500));
+  }
+
+  function cargarTotales() {
+    fetch(SHEET_CSV + "&t=" + Date.now())
+      .then(r => r.text())
+      .then(csv => {
+        const filas = csv.trim().split("\n").slice(1); // saltar encabezado
+        let nunoa = 0, providencia = 0;
+        filas.forEach(fila => {
+          const cols = fila.split(",");
+          const punto = (cols[1] || "").replace(/"/g, "").trim();
+          if (punto === "Ñuñoa") nunoa++;
+          if (punto === "Providencia") providencia++;
+        });
+        document.getElementById("total-nunoa").textContent = nunoa;
+        document.getElementById("total-providencia").textContent = providencia;
+        mostrarConfirmacion();
+      })
+      .catch(() => {
+        document.getElementById("total-nunoa").textContent = "?";
+        document.getElementById("total-providencia").textContent = "?";
+        mostrarConfirmacion();
+      });
   }
 
   function mostrarConfirmacion() {
