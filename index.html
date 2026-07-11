@@ -204,18 +204,30 @@
   .total-hoy-sep { font-size: 30px; color: rgba(255,255,255,0.2); font-weight: 900; }
   .hoy-label { font-size: 13px; font-weight: 900; color: rgba(255,255,255,0.35); letter-spacing: 0.14em; text-transform: uppercase; }
 
+  .nuevo-registro-bloque {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 6px;
+    width: 100%;
+  }
   .nuevo-registro-titulo {
-    font-size: 28px; font-weight: 900; color: #fff;
-    letter-spacing: 0.05em; margin-top: 6px; margin-bottom: 10px;
+    font-size: 18px; font-weight: 900; color: rgba(255,255,255,0.6);
+    letter-spacing: 0.1em; margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .nuevo-registro-botones {
+    display: flex; flex-direction: row; gap: 10px;
   }
   .btn-punto {
-    display: block; width: 100%;
-    padding: 22px; border: none; border-radius: 12px;
+    flex: 1;
+    padding: 20px 10px; border: none; border-radius: 12px;
     font-family: 'Nunito', sans-serif;
-    font-size: 28px; font-weight: 900;
-    letter-spacing: 0.06em; cursor: pointer;
+    font-size: 22px; font-weight: 900;
+    letter-spacing: 0.04em; cursor: pointer;
     text-decoration: none; text-align: center;
-    margin-top: 10px; color: #fff;
+    color: #fff; display: block;
   }
   .providencia-btn { background: #7b1c2e; }
   .nunoa-btn { background: #1a7a4a; }
@@ -311,9 +323,13 @@
         <div class="total-hoy-sub">Total</div>
       </div>
     </div>
-    <div class="nuevo-registro-titulo">NUEVO REGISTRO</div>
-    <a class="btn-punto providencia-btn" href="https://crv-kohl.vercel.app/providencia">PROVIDENCIA</a>
-    <a class="btn-punto nunoa-btn" href="https://crv-kohl.vercel.app/nunoa">ÑUÑOA</a>
+    <div class="nuevo-registro-bloque">
+      <div class="nuevo-registro-titulo">NUEVO REGISTRO</div>
+      <div class="nuevo-registro-botones">
+        <a class="btn-punto providencia-btn" href="https://crv-kohl.vercel.app/providencia">PROVIDENCIA</a>
+        <a class="btn-punto nunoa-btn" href="https://crv-kohl.vercel.app/nunoa">ÑUÑOA</a>
+      </div>
+    </div>
   </div>
 
 </div>
