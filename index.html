@@ -172,6 +172,36 @@
     font-size: 22px; font-weight: 900; color: #fff;
     margin-top: 4px; letter-spacing: 0.04em;
   }
+
+  .acercate-txt {
+    font-size: 18px; font-weight: 700;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.3;
+  }
+  .servicios-elegidos {
+    display: flex; flex-direction: column; gap: 6px;
+    width: 100%;
+  }
+  .servicio-elegido-item {
+    font-size: 26px; font-weight: 900; color: #fff;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px; padding: 12px 16px;
+  }
+  .totales-hoy {
+    display: flex; flex-direction: row;
+    align-items: center; justify-content: center;
+    gap: 10px; margin-top: 10px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 14px; padding: 14px 10px;
+    width: 100%;
+  }
+  .total-hoy-bloque { display: flex; flex-direction: column; align-items: center; gap: 2px; flex: 1; }
+  .total-hoy-num { font-size: 42px; font-weight: 900; line-height: 1; color: #fff; }
+  .total-hoy-num.providencia { color: #f5a623; }
+  .total-hoy-num.nunoa { color: #34d399; }
+  .total-hoy-sub { font-size: 12px; font-weight: 900; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.06em; }
+  .total-hoy-sep { font-size: 30px; color: rgba(255,255,255,0.2); font-weight: 900; }
+  .hoy-label { font-size: 13px; font-weight: 900; color: rgba(255,255,255,0.35); letter-spacing: 0.14em; text-transform: uppercase; }
 </style>
 </head>
 <body>
@@ -245,43 +275,31 @@
   <!-- CONFIRMACIÓN -->
   <div class="result-done" id="result-done">
     <div class="listo-txt">¡LISTO!</div>
-    <div class="llevamos-txt">TRANSACCIONES HASTA AHORA</div>
-    <div class="totales-row">
-      <div class="total-bloque">
-        <div class="total-num providencia" id="total-providencia">—</div>
-        <div class="total-sub">Providencia</div>
-      </div>
-      <div class="separador-total">·</div>
-      <div class="total-bloque">
-        <div class="total-num nunoa" id="total-nunoa">—</div>
-        <div class="total-sub">Ñuñoa</div>
-      </div>
-    </div>
-    <div class="total-general-bloque">
-      <div class="total-general-num" id="total-general">—</div>
-      <div class="total-general-sub">TOTAL</div>
-    </div>
+    <div class="acercate-txt">Acércate a una promotora y solicita:</div>
+    <div class="servicios-elegidos" id="servicios-elegidos"></div>
 
-    <div class="barra-contenedor">
-      <div class="barra-track">
-        <div class="barra-fill" id="barra-fill"></div>
+    <div class="totales-hoy">
+      <div class="total-hoy-bloque">
+        <div class="total-hoy-num providencia" id="total-providencia">—</div>
+        <div class="total-hoy-sub">Providencia</div>
       </div>
-      <div class="barra-labels">
-        <span>0</span>
-        <span>200</span>
-        <span>400</span>
-        <span>600</span>
-        <span>806</span>
+      <div class="total-hoy-sep">·</div>
+      <div class="total-hoy-bloque">
+        <div class="total-hoy-num nunoa" id="total-nunoa">—</div>
+        <div class="total-hoy-sub">Ñuñoa</div>
       </div>
-      <div class="barra-pct" id="barra-pct">—%</div>
+      <div class="total-hoy-sep">·</div>
+      <div class="total-hoy-bloque">
+        <div class="total-hoy-num" id="total-general">—</div>
+        <div class="total-hoy-sub">Total</div>
+      </div>
     </div>
-
-    <button class="btn-nuevo" onclick="reiniciar()">NUEVO REGISTRO</button>
+    <div class="hoy-label">HOY</div>
   </div>
 
 </div>
 <script>
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyYzN73eulw1C6Hvi5NXPMKr1JPAQr42OiobxbgIRXLAY4emO8DaDHM1M38ny8Ry3gwPQ/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwS0cl_gKHbRcE1jC0o3dfrob_0fH7h7EkZ6wnPd6iqB3mgjOp_aD3MlkGqdYTo-eIcgA/exec";
 
   function toggleCheckbox(el) {
     const cb = el.querySelector("input");
@@ -304,18 +322,22 @@
     document.getElementById("btn-enviar").disabled = !ok;
   }
 
+  let serviciosEnviados = [];
+
   function enviarFormulario() {
-    const servicios = [...document.querySelectorAll("#lista-servicios input:checked")].map(i => i.value);
+    serviciosEnviados = [...document.querySelectorAll("#lista-servicios input:checked")].map(i => i.value);
     const punto = document.querySelector("#lista-punto input:checked")?.value || "";
 
     document.getElementById("btn-enviar").disabled = true;
     document.getElementById("sending-msg").style.display = "block";
 
     const ts = new Date().toLocaleString("es-CL");
+    const hoy = new Date().toLocaleDateString("es-CL");
     const params = new URLSearchParams({
       accion: "registrar",
       timestamp: ts,
-      servicios: servicios.join(" | "),
+      fecha: hoy,
+      servicios: serviciosEnviados.join(" | "),
       punto: punto
     });
 
@@ -326,11 +348,11 @@
         document.getElementById("total-providencia").textContent = data.providencia ?? "?";
         const total = (data.nunoa ?? 0) + (data.providencia ?? 0);
         document.getElementById("total-general").textContent = total;
-        const META = 806;
-        const pct = Math.min((total / META) * 100, 100);
-        const pctStr = pct.toFixed(1).replace(".", ",") + "%";
-        document.getElementById("barra-fill").style.width = pct + "%";
-        document.getElementById("barra-pct").textContent = pctStr + " de la meta";
+
+        const contenedor = document.getElementById("servicios-elegidos");
+        contenedor.innerHTML = serviciosEnviados
+          .map(s => `<div class="servicio-elegido-item">${s}</div>`)
+          .join("");
 
         mostrarConfirmacion();
       })
