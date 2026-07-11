@@ -203,6 +203,22 @@
   .total-hoy-sub { font-size: 12px; font-weight: 900; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.06em; }
   .total-hoy-sep { font-size: 30px; color: rgba(255,255,255,0.2); font-weight: 900; }
   .hoy-label { font-size: 13px; font-weight: 900; color: rgba(255,255,255,0.35); letter-spacing: 0.14em; text-transform: uppercase; }
+
+  .nuevo-registro-titulo {
+    font-size: 28px; font-weight: 900; color: #fff;
+    letter-spacing: 0.05em; margin-top: 6px; margin-bottom: 10px;
+  }
+  .btn-punto {
+    display: block; width: 100%;
+    padding: 22px; border: none; border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 28px; font-weight: 900;
+    letter-spacing: 0.06em; cursor: pointer;
+    text-decoration: none; text-align: center;
+    margin-top: 10px; color: #fff;
+  }
+  .providencia-btn { background: #7b1c2e; }
+  .nunoa-btn { background: #1a7a4a; }
 </style>
 </head>
 <body>
@@ -295,7 +311,9 @@
         <div class="total-hoy-sub">Total</div>
       </div>
     </div>
-    <button class="btn-nuevo" style="margin-top: 6px;" onclick="reiniciar()">NUEVO REGISTRO</button>
+    <div class="nuevo-registro-titulo">NUEVO REGISTRO</div>
+    <a class="btn-punto providencia-btn" href="https://crv-kohl.vercel.app/providencia">PROVIDENCIA</a>
+    <a class="btn-punto nunoa-btn" href="https://crv-kohl.vercel.app/nunoa">ÑUÑOA</a>
   </div>
 
 </div>
