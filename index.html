@@ -327,9 +327,12 @@
 
 </div>
 <script>
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbweeKncHKcz8SYCJXwZf4BO0bHymKmePgE_t_QLFBvq1OUVSYaMPpwp9ESQekqw2ifRZw/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwS0cl_gKHbRcE1jC0o3dfrob_0fH7h7EkZ6wnPd6iqB3mgjOp_aD3MlkGqdYTo-eIcgA/exec";
+
+  let enviando = false;
 
   function toggleCheckbox(el) {
+    if (enviando) return;
     const cb = el.querySelector("input");
     cb.checked = !cb.checked;
     el.classList.toggle("selected", cb.checked);
@@ -337,6 +340,7 @@
   }
 
   function toggleRadio(el, grupoId) {
+    if (enviando) return;
     document.getElementById(grupoId).querySelectorAll(".punto-item").forEach(i => i.classList.remove("selected"));
     document.getElementById(grupoId).querySelectorAll("input").forEach(i => i.checked = false);
     el.classList.add("selected");
@@ -345,6 +349,7 @@
   }
 
   function validarFormulario() {
+    if (enviando) return;
     const ok = document.querySelectorAll("#lista-servicios input:checked").length > 0
             && document.querySelectorAll("#lista-punto input:checked").length > 0;
     document.getElementById("btn-enviar").disabled = !ok;
@@ -353,6 +358,9 @@
   let serviciosEnviados = [];
 
   function enviarFormulario() {
+    if (enviando) return;
+    enviando = true;
+    const idRegistro = Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
     serviciosEnviados = [...document.querySelectorAll("#lista-servicios input:checked")].map(i => i.value);
     const punto = document.querySelector("#lista-punto input:checked")?.value || "";
 
@@ -363,6 +371,7 @@
     const hoy = new Date().toLocaleDateString("es-CL");
     const params = new URLSearchParams({
       accion: "registrar",
+      id: idRegistro,
       timestamp: ts,
       fecha: hoy,
       servicios: serviciosEnviados.join(" | "),
@@ -397,6 +406,7 @@
   }
 
   function reiniciar() {
+    enviando = false;
     document.getElementById("result-done").classList.remove("active");
     document.getElementById("pantalla-form").classList.remove("oculto");
     document.querySelectorAll(".servicio-item, .punto-item").forEach(el => el.classList.remove("selected"));
